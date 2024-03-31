@@ -7,8 +7,6 @@
 
 using namespace std;
 
-//Strategy::Strategy(std::vector<std::vector<std::string>> separatedPropositionStatements) : separatedStatements(separatedPropositionStatements) {}
-
 void Strategy::insertSeparatedStatement(std::vector<std::string>& separatedStatement) {
 	separatedStatements.push_back(separatedStatement);
 }
@@ -16,17 +14,6 @@ void Strategy::insertSeparatedStatement(std::vector<std::string>& separatedState
 std::vector<std::vector<std::string>> Strategy::getSeparatedStatements() {
 	return separatedStatements;
 }
-
-
-//void Strategy::setPropositionSymbols(std::vector<std::string>& symbols)
-//{
-//	propositionSymbols = symbols;
-//}
-//
-//std::vector<std::string> Strategy::getPropositionSymbols()
-//{
-//	return propositionSymbols;
-//}
 
 bool Strategy::Separate_Statement_Into_Symbols_And_Connectives(KnowledgeBase& kb) {
 	regex filter_By_Implication_Pattern("(.*)(=>)(.*)");
@@ -78,13 +65,15 @@ bool Strategy::Separate_Statement_Into_Symbols_And_Connectives(KnowledgeBase& kb
 			}
 			insertSeparatedStatement(separatedStatement);
 			statementIterator = statementsHolder.erase(statementIterator);
-			/*for (string s : separatedStatement) {
-				cout << s << " ";
-			}
-			cout << endl;*/
 		}
 
 	}
 
 	return true;
 }
+
+void Strategy::PrintUnsuccessfulResult()
+{
+	cout << "NO";
+}
+

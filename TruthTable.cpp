@@ -2,26 +2,13 @@
 #include "KnowledgeBase.h"
 #include <string>
 #include <vector>
-#include <map>
 #include <iostream>
 #include <regex>
 
 using namespace std;
 
-void ForwardChaining::addSymbol(string symbol)
+bool TruthTable::CheckConclusionsFromPremises(KnowledgeBase& kb)
 {
-	symbolsAdded.push_back(symbol);
-}
-
-vector<string> ForwardChaining::getAddedSymbols()
-{
-	return symbolsAdded;
-}
-
-
-bool ForwardChaining::AddConclusionsFromPremises(KnowledgeBase& kb)
-{
-	std::map<std::vector<std::string>, std::string> invalidStatements;
 	for (vector<string> separatedStatement : getSeparatedStatements()) {
 		if (find(separatedStatement.begin(), separatedStatement.end(), "&") != separatedStatement.end()) {
 			separatedStatement.erase(remove(separatedStatement.begin(), separatedStatement.end(), "&"), separatedStatement.end());
@@ -63,52 +50,4 @@ bool ForwardChaining::AddConclusionsFromPremises(KnowledgeBase& kb)
 		PrintUnsuccessfulResult();
 		return false;
 	}
-
 }
-
-bool ForwardChaining::RecheckInvalidStatements(map<vector<string>, string>& invalidStatements, KnowledgeBase& kb)
-{
-	map<vector<string>, string> initialInvalidStatements = invalidStatements;
-	for (map<vector<string>, string>::iterator it = invalidStatements.begin(); it != invalidStatements.end();) {
-		vector<string> premise = it->first;
-		string conclusion = it->second;
-		for (string s : kb.getSymbols()) {
-			if (find(premise.begin(), premise.end(), s) != premise.end()) {
-				premise.erase(remove(premise.begin(), premise.end(), s), premise.end());
-				if (premise.empty()) {
-					kb.insertSymbol(conclusion);
-					addSymbol(conclusion);
-					it = invalidStatements.erase(it);
-					if (conclusion == kb.getQuery()) {
-						return true;
-					}
-				}
-				else {
-					it++;
-				}
-			}
-		}
-	}
-	if (initialInvalidStatements == invalidStatements) {
-		return false;
-	}
-	else {
-		RecheckInvalidStatements(invalidStatements, kb);
-	}
-}
-
-void ForwardChaining::PrintSuccessfulResult() const {
-	cout << "YES: ";
-	for (string s : symbolsAdded) {
-		if (s != symbolsAdded[symbolsAdded.size() - 1]) {
-			cout << s << ", ";
-		} 
-		else {
-			cout << s;
-		}
-		
-	}
-}
-
-
-

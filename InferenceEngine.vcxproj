@@ -136,6 +136,7 @@
     <ClCompile Include="MainProgram.cpp" />
     <ClCompile Include="ForwardChaining.cpp" />
     <ClCompile Include="Strategy.cpp" />
+    <ClCompile Include="TruthTable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="test_HornKB.txt" />

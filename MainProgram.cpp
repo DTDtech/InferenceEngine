@@ -74,12 +74,6 @@ int main() {
 		else {
 			return -1;
 		}
-		/*for (vector<string> s : fc.getSeparatedStatements()) {
-			for (string sf : s) {
-				cout << sf;
-			}
-			cout << endl;
-		}*/
 	}
 	else {
 		return -1;
