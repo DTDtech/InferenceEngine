@@ -21,30 +21,32 @@
     <ClInclude Include="KnowledgeBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InputSanitizer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ForwardChaining.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MainProgram.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="KnowledgeBase.cpp">
-      <Filter>Resource Files</Filter>
+    <ClCompile Include="TruthTable.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Strategy.cpp">
-      <Filter>Resource Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TruthTable.cpp">
-      <Filter>Resource Files</Filter>
+    <ClCompile Include="MainProgram.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KnowledgeBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ForwardChaining.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BackwardChaining.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="test_HornKB.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Source Files</Filter>
     </Text>
+    <Text Include="multiple_Conjunction.txt" />
+    <Text Include="fc_Random_Statements_Position.txt" />
   </ItemGroup>
 </Project>

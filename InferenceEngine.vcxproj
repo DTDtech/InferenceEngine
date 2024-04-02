@@ -127,11 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="InputSanitizer.h" />
     <ClInclude Include="KnowledgeBase.h" />
     <ClInclude Include="Strategy.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BackwardChaining.cpp" />
     <ClCompile Include="KnowledgeBase.cpp" />
     <ClCompile Include="MainProgram.cpp" />
     <ClCompile Include="ForwardChaining.cpp" />
@@ -139,6 +139,8 @@
     <ClCompile Include="TruthTable.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="fc_Random_Statements_Position.txt" />
+    <Text Include="multiple_Conjunction.txt" />
     <Text Include="test_HornKB.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

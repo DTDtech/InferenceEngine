@@ -61,13 +61,24 @@ bool Insert_Input_To_KnowledgeBase(string fileName, KnowledgeBase& kb) {
 	return true;
 }
 
-int main() {
-	string fileName = "test_HornKB.txt";
-	//vector<vector<string>> initial_Separated_Statement_List(0, vector<string>(0));
+int main(int argc, char** argv) {
+	if (argc != 3) {
+		for (int i = 0; i < argc - 1; i++) {
+			cout << argv[i] << endl;
+		}
+		cout << argc;
+		cout << "Please supply two arguments to this program.";
+		return -1;
+	}
+
+	string fileName = argv[2];
+	string algorithm = argv[1];
+
 	KnowledgeBase kb;
-	//TruthTable truthTable;
-	ForwardChaining fc;
-	if (Insert_Input_To_KnowledgeBase(fileName, kb)) {
+	Insert_Input_To_KnowledgeBase(fileName, kb);
+	
+	if (algorithm == "FC") {
+		ForwardChaining fc;
 		if (fc.Separate_Statement_Into_Symbols_And_Connectives(kb)) {
 			fc.AddConclusionsFromPremises(kb);
 		}
@@ -75,7 +86,26 @@ int main() {
 			return -1;
 		}
 	}
+	else if (algorithm == "BC") {
+		BackwardChaining bc;
+		if (bc.Separate_Statement_Into_Symbols_And_Connectives(kb)) {
+			bc.AddPremisesFromQuery(kb);
+		}
+		else {
+			return -1;
+		}
+	}
+	else if (algorithm == "TT") {
+		TruthTable tt;
+		if (tt.Separate_Statement_Into_Symbols_And_Connectives(kb)) {
+			tt.CheckConclusionsFromPremises(kb);
+		}
+		else {
+			return -1;
+		}
+	}
 	else {
+		cout << "Please provide a valid algorithm name";
 		return -1;
 	}
 	return 0;

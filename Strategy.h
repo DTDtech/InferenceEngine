@@ -16,25 +16,48 @@ public:
 
 protected:
 	std::vector<std::vector<std::string>> separatedStatements;
-	std::vector<std::string> symbolsAdded;
 };
 
 class TruthTable : public Strategy {
 public: 
-	void addSymbol(std::string symbol);
-	std::vector<std::string> getAddedSymbols();
+	TruthTable();
+	void CheckConclusionsFromPremises(KnowledgeBase& kb);
 
-	bool CheckConclusionsFromPremises(KnowledgeBase& kb);
+	void PrintSuccessfulResult() const override;
+
+	int getModelsCount() const;
+	void increaseModelsCount();
+
+private:
+	int modelsCount;
 };
 
-class ForwardChaining : virtual public Strategy {
+class ForwardChaining : public Strategy {
 public:
-
-	void addSymbol(std::string symbol);
-	std::vector<std::string> getAddedSymbols();
-
-	bool AddConclusionsFromPremises(KnowledgeBase& kb);
+	ForwardChaining();
+	void AddConclusionsFromPremises(KnowledgeBase& kb);
 	bool RecheckInvalidStatements(std::map<std::vector<std::string>, std::string>& invalidStatements, KnowledgeBase& kb);
 
 	void PrintSuccessfulResult() const override;
+
+	void addSymbol(std::string symbol);
+	std::vector<std::string> getAddedSymbols() const;
+
+private:
+	std::vector<std::string> symbolsAdded;
+};
+
+class BackwardChaining : public Strategy {
+public:
+	BackwardChaining();
+	void AddPremisesFromQuery(KnowledgeBase& kb);
+	bool Find_Statement_Matching_With_Symbols(std::vector<std::string> unEstablishedPremise, std::vector<std::vector<std::string>>& separatedStatementsList, KnowledgeBase& kb);
+
+	void PrintSuccessfulResult() const override;
+
+	void addSymbol(std::string symbol);
+	std::vector<std::string> getAddedSymbols() const;
+
+private:
+	std::vector<std::string> symbolsAdded;
 };

@@ -74,6 +74,6 @@ bool Strategy::Separate_Statement_Into_Symbols_And_Connectives(KnowledgeBase& kb
 
 void Strategy::PrintUnsuccessfulResult()
 {
-	cout << "NO";
+	cout << "NO" << endl;
 }
 
